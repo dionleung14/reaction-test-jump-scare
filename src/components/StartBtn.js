@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setTimer } from "../actions";
 
+// const setTime = useSelector((state) => state.setTimer);
 export default class StartBtn extends Component {
   state = {
     timer: 0,
@@ -14,7 +17,7 @@ export default class StartBtn extends Component {
       setTimeout(() => {
         console.log("delay");
       }, this.state.countdown);
-      let cd = setInterval(() => {
+      setInterval(() => {
         this.setState({
           reaction: this.state.reaction - 1,
         });
@@ -22,10 +25,14 @@ export default class StartBtn extends Component {
     };
 
     return (
-      <button id="start" onClick={gameStart}>
-        click me: {this.state.timer}
-        reaction: {this.state.reaction}
-      </button>
+      <div>
+        <button id="start" onClick={gameStart}>
+          click me: {this.state.timer}
+          <br />
+          reaction: {this.state.reaction}
+        </button>
+        <button>stop reaction</button>
+      </div>
     );
   }
 }
